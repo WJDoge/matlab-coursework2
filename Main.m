@@ -119,6 +119,7 @@ fclose(fid);
 disp('温度日志已写入文件 cabin_temperature.txt');
 
 %% Task 2 - LED 温度监控设备实现
+%若需运行 Task 2，请注释掉 Task 3 调用，并取消下面代码行注释
 %^disp('启动 Task 2：LED 温度监控设备。');
 % 调用函数 temp_monitor，该函数实现了实时监控、图形更新及 LED 控制
 %temp_monitor(a);
@@ -126,20 +127,33 @@ disp('温度日志已写入文件 cabin_temperature.txt');
 
 %% Task 3 - 温度预测算法
 %若需运行 Task 3，请注释掉 Task 2 调用，并取消下面代码行注释
-disp('启动 Task 3：LED 温度预测设备。')
-temp_prediction(a);
+%disp('启动 Task 3：LED 温度预测设备。')
+%temp_prediction(a);
 
-%% Task 4 - 反思性陈述 (400 字以内)
-%
-% 反思性陈述（请在下面注释中填写，不超过 400 字）：
-%
-% 本项目要求将 MATLAB 与 Arduino 集成，实现温度数据采集、实时监控、LED 控制及温度预测。
-% 在完成过程中，我学到了如何配置 Arduino 支持包、利用 Git 进行版本控制，
-% 以及如何利用 MATLAB 的图形与文件 I/O 功能实现数据记录和显示。
-% 本次作业也暴露了实时控制与采样之间的权衡，未来可考虑使用异步任务或计时器提高响应效率。
-%
-% (请根据实际体验详细描述你在项目中遇到的挑战、优势、局限和改进建议)
+%% Task 4 
+%% REFLECTIVE STATEMENT
 
-%% 任务 5 - 代码注释、版本控制与专业实践
-% 请确保整个代码过程均有详尽的注释，并在开发过程中多次提交（commit）代码版本。
-% =========================================================================
+% During the development process, one of the first issues I encountered was a significant difference in real-time 
+% temperature readings between the main script and the task2/task3 scripts. Eventually, I discovered that the problem 
+% originated from incorrect wiring – I had not properly connected the resistor and LED in series before integrating 
+% them into the circuit. As a result, the LEDs caused a voltage drop, which affected the A0 analog readings. 
+% This explained why the same code produced different outputs in different scripts. After correcting the wiring, 
+% the voltage readings became much more consistent.
+
+% Another major challenge was the implementation of temperature prediction in Task 3. Since it forecasts temperature 
+% five minutes into the future, using a purely linear algorithm caused unrealistic predictions due to random voltage 
+% spikes. To address this, I added a threshold filter for the rate of change to reject outliers. This helped stabilize 
+% the predictions significantly. Although this reduces sensitivity, it is a reasonable trade-off in a cabin environment 
+% where temperature is generally stable.
+
+% I believe the strength of my implementation lies in the simplicity of the approach. I prioritized clear, minimal 
+% logic to reduce development complexity and error rates, while making it easier to expand with new features in the future.
+
+% However, there are still limitations. For example, Task 3 predictions are not always accurate, and due to hardware 
+% limitations, further algorithm optimization may have limited effect. Thus, I chose to keep the algorithm simple.
+
+% Given more time, I would address the unstable readings during the initial execution of the program, and add a more 
+% user-friendly interface for selecting between different functionalities (rather than commenting/uncommenting code). 
+% Furthermore, if better hardware was available, I would consider integrating multiple sensors and refining the 
+% prediction logic for improved accuracy in both monitoring and forecasting cabin temperature.
+
