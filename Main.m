@@ -60,7 +60,7 @@ disp('LED 测试结束。');
 V0 = 0.5;      % 0°C 对应电压，单位：伏特
 TC = 0.01;     % 温度系数，单位：伏特/°C
 
-duration = 30;          % 总采集时间 600 秒（10 分钟）
+duration = 600;          % 总采集时间 600 秒（10 分钟）
 numSamples = duration + 1;  % 包含起始时刻
 
 temp_all = zeros(1, numSamples);  % 存储温度数据
